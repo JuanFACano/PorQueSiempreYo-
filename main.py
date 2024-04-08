@@ -7,11 +7,10 @@ class Main:
         pantalla_inicial = PantallaPrincipal()
         pantalla_inicial.mainloop()
 
-        # lista_jugadores = pantalla_inicial.lista_jugadores
+        lista_jugadores = [pantalla_inicial.values]
 
-        # self.tablero = Tablero()
-        # self.tablero.mainloop()
+        self.tablero = Tablero(lista_jugadores)
+        self.tablero.mainloop()
 
 
 app = Main()
-     

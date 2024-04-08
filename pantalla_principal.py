@@ -1,5 +1,7 @@
 import customtkinter as ct
 
+CHIPS = 30
+
 
 class PantallaPrincipal(ct.CTk):
     def __init__(self):
@@ -17,6 +19,8 @@ class PantallaPrincipal(ct.CTk):
         self.entries = []
         self.labels = []
         self.message = []
+        self.values = []
+        self.chips = []
 
         # Titulo
         self.title_init = ct.CTkLabel(
@@ -84,6 +88,16 @@ class PantallaPrincipal(ct.CTk):
         )
         self.button_num_players.grid(row=0, column=1, sticky="nsew")
 
+        # Boton para empezar juego
+        self.button_play_game = ct.CTkButton(
+            self.tab_players,
+            text="Comenzar Juego",
+            fg_color="#4557B5",
+            font=("copyduck", 16),
+            command=self.play_game,
+        )
+        self.button_play_game.grid(row=2, column=0, ipadx=10, ipady=10)
+
     # Crear los campos para ingresar nombre
     def create_entry_players(self):
 
@@ -125,18 +139,6 @@ class PantallaPrincipal(ct.CTk):
         for entry in self.entries:
             entry.grid(row=0, column=1, padx=10, ipadx=10)
 
-    # verificar widget visible
-    def toggle_label_entry(self):
-        for entry in self.entries:
-            if entry.grid_info():  # Verifica si el widget está actualmente visible
-                entry.destroy()
-
-        for label in self.labels:
-            if label.grid_info():  # Verifica si el widget está actualmente visible
-                label.destroy()
-        self.entries = []
-        self.labels = []
-
     # verificar que lo ingresado sea valido
     def validate_players(self):
         entry = self.num_players.get()
@@ -172,6 +174,32 @@ class PantallaPrincipal(ct.CTk):
         label.grid(row=2, column=1, sticky="nsew", pady=20)
         self.message.append(label)
         return None
+
+    # verificar widget visible
+    def toggle_label_entry(self):
+        for entry in self.entries:
+            if entry.grid_info():  # Verifica si el widget está actualmente visible
+                entry.destroy()
+
+        for label in self.labels:
+            if label.grid_info():  # Verifica si el widget está actualmente visible
+                label.destroy()
+        self.entries = []
+        self.labels = []
+
+    def splitting_chips(self, num_players):
+        chips = int(CHIPS / num_players)
+        for i in range(num_players):
+            self.chips.append(chips)
+
+    # Mostrar valores de los entries
+    def play_game(self):
+        values = self.get_value_entries(self.entries)
+        self.splitting_chips(len(values))
+
+        for i, value in enumerate(values):
+            self.values.append([value, self.chips[i]])
+        self.destroy()
 
     # Tomar el valor de las entradas
     def get_value_entries(self, entries):

@@ -1,11 +1,11 @@
 import customtkinter as ct
 
 from tab_game import TabGame
-from tab_player import TabPlayer
+from tab_player import TabPlayers
 
 
 class Tablero(ct.CTk):
-    def __init__(self):
+    def __init__(self, players):
         super().__init__()
         self.title("¿Por Qué Siempre Yo?")
         self.geometry("1280x720")
@@ -16,4 +16,4 @@ class Tablero(ct.CTk):
         self.grid_rowconfigure(0, weight=1)
 
         self.tab_game = TabGame(self)
-        self.tab_game = TabPlayer(self)
+        self.tab_game = TabPlayers(self, players)
