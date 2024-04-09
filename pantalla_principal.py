@@ -1,6 +1,6 @@
 import customtkinter as ct
 
-CHIPS = 30
+PIECES = 30
 
 
 class PantallaPrincipal(ct.CTk):
@@ -20,7 +20,7 @@ class PantallaPrincipal(ct.CTk):
         self.labels = []
         self.message = []
         self.values = []
-        self.chips = []
+        self.pieces = []
 
         # Titulo
         self.title_init = ct.CTkLabel(
@@ -187,18 +187,18 @@ class PantallaPrincipal(ct.CTk):
         self.entries = []
         self.labels = []
 
-    def splitting_chips(self, num_players):
-        chips = int(CHIPS / num_players)
+    def splitting_pieces(self, num_players):
+        pieces = int(PIECES / num_players)
         for i in range(num_players):
-            self.chips.append(chips)
+            self.pieces.append(pieces)
 
     # Mostrar valores de los entries
     def play_game(self):
         values = self.get_value_entries(self.entries)
-        self.splitting_chips(len(values))
+        self.splitting_pieces(len(values))
 
         for i, value in enumerate(values):
-            self.values.append([value, self.chips[i]])
+            self.values.append([value, self.pieces[i]])
         self.destroy()
 
     # Tomar el valor de las entradas

@@ -14,8 +14,8 @@ class TabPlayers(ct.CTk):
         self.tab_players.grid(
             row=0, column=1, padx=(0, 20), pady=(20, 20), sticky="nsew"
         )
-        self.tab_players.grid_rowconfigure((0), weight=1)
         self.tab_players.grid_rowconfigure((0), weight=2)
+        self.tab_players.grid_columnconfigure((0), weight=1)
 
         self.tab_players_detail = ct.CTkFrame(
             master=self.tab_players,
@@ -24,43 +24,58 @@ class TabPlayers(ct.CTk):
             corner_radius=20,
             fg_color="transparent",
         )
+        self.tab_players_detail.grid(row=0, column=0, sticky="nsew")
+        self.tab_players_detail.grid_rowconfigure((0), weight=1)
+        self.tab_players_detail.grid_rowconfigure((1), weight=2)
+        self.tab_players_detail.grid_columnconfigure((0), weight=1)
 
         self.tab_random = ct.CTkFrame(
             master=self.tab_players,
-            height=275,
             border_width=2,
             border_color="#242847",
             corner_radius=20,
             fg_color="transparent",
         )
-
-        self.tab_players_detail.pack(expand=True, fill="both", pady=(10, 10))
-        self.tab_random.pack(fill="both", pady=(10, 10), ipady=20)
+        self.tab_random.grid(row=1, column=0, sticky="nsew")
 
         # Title
         self.players_title = ct.CTkLabel(
             master=self.tab_players_detail,
             text="Jugadores",
-            font=("copyduck", 32),
+            font=("copyduck", 48),
             text_color="#242847",
         )
-        self.players_title.pack(pady=(20, 0))
+
+        self.players_title.grid(row=0, column=0, sticky="ew", padx=20)
 
         self.tab_player = ct.CTkFrame(
             master=self.tab_players_detail, fg_color="transparent"
         )
-        self.tab_player.pack(expand=True)
-
+        self.tab_player.grid(row=1, column=0, sticky="nsew", padx=10)
+        self.tab_player.grid_columnconfigure((0), weight=1)
         contador = 1
-        for player in self.players:
-            label = ct.CTkLabel(
-                master=self.tab_player,
-                text=f"{contador}. {player[0]}  {player[1]}",
-                font=("copyduck", 24, "bold"),
-                text_color="#242847",
-            )
-            contador += 1
-            label.pack()
+        for players in self.players:
+            for player in players:
+                tab_player = ct.CTkFrame(master=self.tab_player, fg_color="transparent")
+                label_name = ct.CTkLabel(
+                    master=tab_player,
+                    text=f"{contador}.   {player[0]}",
+                    font=("copyduck", 32),
+                    text_color="#242847",
+                )
+                label_piece = ct.CTkLabel(
+                    master=tab_player,
+                    text=f"{player[1]}",
+                    font=("copyduck", 32),
+                    text_color="#242847",
+                )
+                contador += 1
+                tab_player.grid(row=contador - 1, column=0, sticky="ew")
+                tab_player.grid_columnconfigure((0), weight=1)
+                tab_player.grid_columnconfigure((1), weight=1)
+
+                label_name.grid(row=0, column=0, padx=20, sticky="w")
+                label_piece.grid(row=0, column=1, padx=20, sticky="e")
 
         # Image Dice
         self.image = ct.CTkImage(
