@@ -189,7 +189,8 @@ class PantallaPrincipal(ct.CTk):
 
     def splitting_pieces(self, num_players):
         pieces = int(PIECES / num_players)
-        for i in range(num_players):
+
+        for _ in range(num_players):
             self.pieces.append(pieces)
 
     # Mostrar valores de los entries
