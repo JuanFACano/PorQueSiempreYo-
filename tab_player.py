@@ -60,7 +60,7 @@ class TabPlayers(ct.CTk):
                 label_name = ct.CTkLabel(
                     master=tab_player,
                     text=f"{contador}.   {player[0]}",
-                    font=("copyduck", 32),
+                    font=("copyduck", 24),
                     text_color="#242847",
                 )
                 label_piece = ct.CTkLabel(
@@ -74,8 +74,8 @@ class TabPlayers(ct.CTk):
                 tab_player.grid_columnconfigure((0), weight=1)
                 tab_player.grid_columnconfigure((1), weight=1)
 
-                label_name.grid(row=0, column=0, padx=20, sticky="w")
-                label_piece.grid(row=0, column=1, padx=20, sticky="e")
+                label_name.grid(row=0, column=0, padx=(40, 0), sticky="w")
+                label_piece.grid(row=0, column=1, padx=(0, 20), sticky="e")
 
         # Image Dice
         self.image = ct.CTkImage(
