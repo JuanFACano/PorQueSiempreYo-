@@ -51,7 +51,7 @@ class TabPlayers(ct.CTk):
         self.tab_player = ct.CTkFrame(
             master=self.tab_players_detail, fg_color="transparent"
         )
-        self.tab_player.grid(row=1, column=0, sticky="nsew", padx=10)
+        self.tab_player.grid(row=1, column=0, sticky="nsew", padx=20, pady=20)
         self.tab_player.grid_columnconfigure((0), weight=1)
         contador = 1
         for players in self.players:
@@ -74,8 +74,8 @@ class TabPlayers(ct.CTk):
                 tab_player.grid_columnconfigure((0), weight=1)
                 tab_player.grid_columnconfigure((1), weight=1)
 
-                label_name.grid(row=0, column=0, padx=20, sticky="w")
-                label_piece.grid(row=0, column=1, padx=20, sticky="e")
+                label_name.grid(row=0, column=0)
+                label_piece.grid(row=0, column=1)
 
         # Image Dice
         self.image = ct.CTkImage(

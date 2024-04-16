@@ -196,6 +196,7 @@ class PantallaPrincipal(ct.CTk):
     # Mostrar valores de los entries
     def play_game(self):
         values = self.get_value_entries(self.entries)
+        print(values)
         self.splitting_pieces(len(values))
 
         for i, value in enumerate(values):
